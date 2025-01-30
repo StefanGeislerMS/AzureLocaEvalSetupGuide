@@ -22,6 +22,35 @@ Internet connectivity is necessary.
 •	Online Documentation for setting up a virtual eval environment can be found here: [Deploy a virtual Azure Local, version 23H2 system - Azure Local | Microsoft Learn](https://learn.microsoft.com/en-us/azure/azure-local/deploy/deployment-virtual)
 
 ## Installation - Step-by-Step
+
 ### Prepare local Active Directory
-* Create a new Organizational Unit (OU) for Azure Local – e.g. “AzureLocal”
-* 
+
+* Use ADSI Edit to create a new Organizational Unit (OU) for Azure Local – e.g. “AzureLocal”
+![Image](/img/001.png)
+
+*	Create a new user account – e.g. “AzureLocalSetup” - the account will be used as AD Azure Local installation account. You need to assign a strong password and note the password - we'll need it later. Also configure “password never expires” for the account.
+![Image](/img/002.png)
+
+* Grant full access permissions to the AD Azure Local Installation Account on the Azure Local Organizational Unit (OU). This account must have the ability to join computers to this OU.  
+![Image](/img/003.png)
+
+### Create cluster node VMs in Hyper-V
+
+* Make sure that you have a virtual switch in Hyper-V that is connected to your external network. In this guide we use a switch with the name "External 2500" - if your virtual switch has a different name, you adjust the name in the need to edit the **CreateAzureLocalClusterNodeVM.ps1** script accordingly!
+![Image](/img/004.png)
+
+*	Creation of the Azure Local Cluster node VMs is a four-step process:
+  1. Create and configure the VMs on your Hyper-V host
+  2. Install the initial Azure Stack HCI Operating System in these VMs
+  3. Configure the initially installed VMs and assign static IPs
+  4. Onboard the VMs to Azure ARC
+
+### Download the Azure Stack HCI Operating System Image
+
+*	Documentation how to download an installation image can be found here: [Download Azure Stack HCI Operating System, version 23H2 software for Azure Local deployment - Azure Local | Microsoft Learn](https://learn.microsoft.com/en-us/azure/azure-local/deploy/download-23h2-software)
+*	To download the install image sign in to the Azure portal and search for "Azure Local"
+![Image](/img/005.png)
+
+* Click “Choose Language”
+![Image](/img/006.png)
+
