@@ -4,6 +4,7 @@
 
 This document offers a comprehensive step-by-step checklist for deploying a two-node Azure Local 23H2 cluster on a Hyper-V host within your local, on-premises environment. This Azure Local cluster is designed for evaluation and demonstration purposes. The cluster's performance will depend on the capabilities of your Hyper-V host, but it should be adequate for experimentation and self-learning. Deploying multiple smaller virtual machines should not pose any issues.
 
+
 ## Requirements and prerequisites
 
 ### On-premisses
@@ -162,7 +163,7 @@ You may want to open the VM properties and verify the following properties:
 * Select “Manual” IP assignment and specify a range of minimum number of six IP addresses in addition with Gateway and DNS IP. After that press the “Validate Subnet” button for a check on your network details.  
 ![Image](/img/033.png)
 
-* •	Specify a name for the cluster location and click the “create new” link to create a new storage account to be used for the cluster witness.
+* Specify a name for the cluster location and click the “create new” link to create a new storage account to be used for the cluster witness.
 ![Image](/img/033a.png)
 
 * Specify a valid name for the storage account an create it. LRS is sufficient.  
@@ -192,11 +193,11 @@ You may want to open the VM properties and verify the following properties:
 *	Upon successful completion of the final deployment step 'Clean up temporary content', the Azure Local cluster deployment is complete, and you may proceed with configuring the cluster.  
 ![Image](/img/042.png)
 
-### Configure the cluster for 1st use
+# Configure the cluster for 1st use
 
 The following steps are required to configure the cluster so it is ready for e.g. VM deployments. First, we will create an image to be used for VM deployment. Next, we will set up a logical network for the new VMs. Finally, we will create a VM and configure Admin Center for cluster management.
 
-#### Activate Azure Hybrid Benefits
+## Activate Azure Hybrid Benefits
 
 *	Make sure you enable the “Hybrid Benefits” for the new Azure Local cluster nodes. This will allow you to utilize Windows Admin Center to administrate the cluster nodes easier. Otherwise you'll need to administrate the cluster from commandline using PowerShell.  
 
@@ -215,7 +216,7 @@ The following steps are required to configure the cluster so it is ready for e.g
 * Check the box and press the “Activate” Button.  
 ![Image](/img/050.png)
 
-#### Create a VM image in Azure Local
+## Create a VM image in Azure Local
 *	T have an installation image available locally is a prerequisite if you plan to deploy VMs to your Azure Local cluster.
 *	
 *	On the “Resources” tag of your cluster instance, select the “VM Images” tab. Use “add image” to add a new image and select the "Marketplace" option.  
@@ -226,7 +227,7 @@ The following steps are required to configure the cluster so it is ready for e.g
  
 *	The deployment of an image to Azure Local may take anywhere from several minutes to several hours, depending on the network bandwidth between the Azure Local cluster on premisses and Azure in the internet. You can monitor the status of the deployment in the Azure portal.  ![Image](/img/047.png)  
  
-#### Create a logical network in Azure Local
+## Create a logical network in Azure Local
 
 *	A logical network is a prerequisite before VMs can be deployed to an Azure Local cluster. To create a new logical network, open Azure Local in the portal, select the cluster instance and under "Resources" create a new logical network.   
 ![Image](/img/051.png)
@@ -237,7 +238,7 @@ The following steps are required to configure the cluster so it is ready for e.g
 *	Specify thje network information for the logical network, that maps to the on-premises network – we’ll use static IP address assignment.  
 ![Image](/img/053.png)
 
-#### Create a VM on Azure Local
+## Create a VM on Azure Local
 *	When image and logical network creation finished, we can launch creation of a virtual machine on the cluster. Open Azure Local in the portal, select the cluster instance and under "Resources" create a new virtual machine.  
 ![Image](/img/054.png)
 
@@ -254,7 +255,7 @@ The following steps are required to configure the cluster so it is ready for e.g
 *	Review the VM and click the “Create” button. The deployment of a VM can take up to multiple minutes. You can monitor the deployment process in the Azure console.
 ![Image](/img/059.png)   
 
-#### Enable Windows Admin Center for Azure Local cluster nodes
+## Enable Windows Admin Center for Azure Local cluster nodes
 
 *	Windows Admin Center is a graphical tool that allows cluster node management from the Azure portal, remote, without a need for VPN.  
 ![Image](/img/060.png)   
